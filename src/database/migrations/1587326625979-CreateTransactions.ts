@@ -20,8 +20,9 @@ export default class CreateTransactions1587326625979 implements MigrationInterfa
           },
           {
             name: 'value',
-            type: 'money',
-            isNullable: false,
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
             name: 'type',

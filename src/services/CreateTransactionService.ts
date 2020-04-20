@@ -1,21 +1,26 @@
 // import AppError from '../errors/AppError';
+import {getCustomRepository} from 'typeorm';
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import Transaction from '../models/Transaction';
 
+interface Request {
+  title: string;
+  type: 'income' | 'outcome';
+  value: number;
+  category: string;
+}
+
 class CreateTransactionService {
-  private transactionsRepository: TransactionsRepository;
+  public async execute({title, value, type, category}: Request): Promise<Transaction> {
+    const transactionsRepository = getCustomRepository(TransactionsRepository);
 
-  constructor(transactionsRepository: TransactionsRepository) {
-    this.transactionsRepository = transactionsRepository;
-  }
+    const transaction = transactionsRepository.create({
+      title,
+      value,
+      type,
+    });
 
-  public async execute({title, value, type, category}: Transaction): Promise<Transaction> {
-    const transaction = this.transactionsRepository.create({title, value, type, category});
-    const balance = this.transactionsRepository.getBalance();
-
-    if (type === 'outcome' && value > balance.total) {
-      throw Error('Forbidden Transaction.');
-    }
+    await transactionsRepository.save(transaction);
 
     return transaction;
   }

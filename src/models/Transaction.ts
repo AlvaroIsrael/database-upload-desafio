@@ -20,7 +20,7 @@ class Transaction {
   @Column('varchar')
   type: 'income' | 'outcome';
 
-  @Column('money')
+  @Column('decimal')
   value: number;
 
   @ManyToOne(() => Category)

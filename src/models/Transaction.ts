@@ -14,10 +14,10 @@ class Transaction {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar')
+  @Column()
   title: string;
 
-  @Column('varchar')
+  @Column()
   type: 'income' | 'outcome';
 
   @Column('decimal')

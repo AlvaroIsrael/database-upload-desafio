@@ -5,7 +5,7 @@ class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar')
+  @Column()
   title: string;
 
   @CreateDateColumn()

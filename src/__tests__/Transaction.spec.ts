@@ -1,6 +1,6 @@
 import request from 'supertest';
 import path from 'path';
-import { Connection, getRepository, getConnection } from 'typeorm';
+import {Connection, getRepository, getConnection} from 'typeorm';
 import createConnection from '../database';
 
 import Transaction from '../models/Transaction';
@@ -124,7 +124,7 @@ describe('Transaction', () => {
     const transactionsRepository = getRepository(Transaction);
     const categoriesRepository = getRepository(Category);
 
-    const { identifiers } = await categoriesRepository.insert({
+    const {identifiers} = await categoriesRepository.insert({
       title: 'Salary',
     });
 

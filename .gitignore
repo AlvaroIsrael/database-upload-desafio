@@ -10,3 +10,4 @@ yarn-error.log
 
 tmp/*
 !tmp/.gitkeep
+yarn.lock
